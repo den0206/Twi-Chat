@@ -8,22 +8,31 @@
 import SwiftUI
 
 struct ConversationsView: View {
+    
+    @State private var showSheet = false
+    @State private var showChat  = false
+    
     var body: some View {
         
         ZStack(alignment: .bottomTrailing) {
+            
+            NavigationLink(destination: ChatView(), isActive: $showChat, label: {})
             
             /// Z1
             ScrollView {
                 LazyVStack {
                     ForEach(0..<10) { i in
-                        ConversationsCell()
+                        NavigationLink(destination: ChatView()) {
+                            ConversationsCell()
+
+                        }
                     }
                 }
                 
             }
             
             /// Z2
-            Button(action: {}) {
+            Button(action: {showSheet.toggle()}) {
                 Image(systemName: "envelope")
                     .resizable()
                     .scaledToFit()
@@ -34,6 +43,9 @@ struct ConversationsView: View {
             .foregroundColor(.white)
             .clipShape(Circle())
             .padding()
+            .sheet(isPresented: $showSheet) {
+                NewMessageView(show: $showSheet, startChat: $showChat)
+            }
             
           
         }

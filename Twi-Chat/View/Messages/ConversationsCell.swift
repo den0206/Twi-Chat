@@ -30,6 +30,7 @@ struct ConversationsCell: View {
                         .font(.system(size: 14))
                         .lineLimit(2)
                 }
+                .foregroundColor(.primary)
                 .padding(.trailing)
                 
                Spacer()
