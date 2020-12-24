@@ -22,6 +22,7 @@ struct UserProfileView: View {
                 
                 ForEach(0..<9) { tweet in
                     TweetCell()
+                        .padding(.horizontal)
                 }
             }
            
